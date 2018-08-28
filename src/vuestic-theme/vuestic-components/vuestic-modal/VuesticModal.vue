@@ -11,6 +11,12 @@
                   <div class="modal-title">
                     <slot name="title"></slot>
                   </div>
+
+                  <i
+                    class="ion ion-md-close close-modal"
+                    v-if="closeIconShown"
+                    @click.prevent="cancel"
+                  />
                 </slot>
               </div>
               <!--Container-->
@@ -68,6 +74,10 @@
       cancelClass: {
         type: String,
         default: 'btn btn-secondary'
+      },
+      closeIconShown: {
+        type: Boolean,
+        default: true
       },
       okDisabled: {
         type: Boolean,
@@ -141,10 +151,6 @@
 </script>
 
 <style lang="scss">
-  @import "../../../sass/_variables.scss";
-  @import "~bootstrap/scss/functions";
-  @import "~bootstrap/scss/variables";
-
   .vuestic-modal {
     height: 0;
     width: 0;
@@ -180,6 +186,13 @@
       font-size: $font-size-larger;
       display: flex;
       align-items: center;
+    }
+
+    .close-modal {
+      margin-left: 1rem;
+      font-size: $font-size-large;
+      line-height: $font-size-large;
+      cursor: pointer;
     }
 
     .modal-content {

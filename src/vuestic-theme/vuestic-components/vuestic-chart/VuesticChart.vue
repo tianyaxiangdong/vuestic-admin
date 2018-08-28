@@ -1,11 +1,11 @@
 <template>
   <div class='vuestic-chart'>
-    <pie-chart :options="options" :data="data" v-if="type === 'pie'"></pie-chart>
-    <donut-chart :options="options" :data="data" v-if="type === 'donut'"></donut-chart>
-    <bubble-chart :options="options" :data="data" v-if="type === 'bubble'"></bubble-chart>
-    <line-chart :options="options" :data="data" v-if="type === 'line'"></line-chart>
-    <horizontal-bar-chart :options="options" :data="data" v-if="type === 'horizontal-bar'"></horizontal-bar-chart>
-    <vertical-bar-chart :options="options" :data="data" v-if="type === 'vertical-bar'"></vertical-bar-chart>
+    <pie-chart :options="options" :chart-data="data" v-if="type === 'pie'"></pie-chart>
+    <donut-chart :options="options" :chart-data="data" v-if="type === 'donut'"></donut-chart>
+    <bubble-chart :options="options" :chart-data="data" v-if="type === 'bubble'"></bubble-chart>
+    <line-chart :options="options" :chart-data="data" v-if="type === 'line'"></line-chart>
+    <horizontal-bar-chart :options="options" :chart-data="data" v-if="type === 'horizontal-bar'"></horizontal-bar-chart>
+    <vertical-bar-chart :options="options" :chart-data="data" v-if="type === 'vertical-bar'"></vertical-bar-chart>
   </div>
 </template>
 
@@ -27,13 +27,11 @@
       HorizontalBarChart,
       DonutChart,
       BubbleChart
-    }
+    },
   }
 </script>
 
 <style lang='scss'>
-  @import '../../../sass/_variables.scss';
-
   .vuestic-chart {
     width: 100%;
     height: 100%;

@@ -1,7 +1,7 @@
 <template>
   <div class="widget" :class="{'no-header': !headerText}">
     <div class="widget-header" v-if="headerText">{{headerText}}</div>
-    <div class="widget-body">
+    <div class="widget-body" v-if="hasSlotData">
       <slot></slot>
     </div>
   </div>
@@ -11,13 +11,16 @@
   export default {
     name: 'vuestic-widget',
 
-    props: ['headerText']
+    props: ['headerText'],
+    computed: {
+      hasSlotData () {
+        return this.$slots.default
+      }
+    }
   }
 </script>
 
 <style lang="scss">
-  @import "../../../sass/_variables.scss";
-
   .widget {
     background: $widget-bg;
     box-shadow: $widget-box-shadow;
@@ -31,9 +34,9 @@
     }
 
     &.larger-padding {
-       .widget-body {
-         padding: $widget-larger-padding;
-       }
+      .widget-body {
+        padding: $widget-larger-padding;
+      }
     }
 
     &.no-h-padding {
@@ -90,3 +93,4 @@
     }
   }
 </style>
+

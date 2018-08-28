@@ -1,5 +1,6 @@
 <template>
-  <div class="vuestic-data-table table-responsive">
+  <div class="vuestic-data-table table-responsive"
+       :class="{'data-loading': loading}">
     <div class="d-flex flex-md-row flex-column align-items-center" :class="controlsAlignmentClass">
       <filter-bar
         @filter="onFilterSet"
@@ -17,6 +18,16 @@
                         v-show="perPageSelectorShown"></items-per-page>
       </div>
     </div>
+    <div v-show="loading" class="data-table-loading">
+      <slot name="loading">
+        <spring-spinner
+          slot="loading"
+          :animation-duration="2500"
+          :size="70"
+          color="#4ae387"
+        />
+      </slot>
+    </div>
     <vuetable
       ref="vuetable"
       :apiUrl="apiUrl"
@@ -30,7 +41,11 @@
       :paginationPath="paginationPathComputed"
       :appendParams="moreParams"
       :perPage="perPage"
+      :queryParams="queryParams"
+      :noDataTemplate="noDataTemplate"
       @vuetable:pagination-data="onPaginationData"
+      @vuetable:loading="onLoading"
+      @vuetable:loaded="onLoaded"
     />
     <div class="d-flex justify-content-center mb-4">
       <vuetable-pagination ref="pagination"
@@ -51,10 +66,12 @@
   import DefaultPerPageDefinition from './data/items-per-page-definition'
   import Vue from 'vue'
   import DataTableStyles from '../vuestic-datatable/data/data-table-styles'
+  import SpringSpinner from 'epic-spinners/src/components/lib/SpringSpinner'
 
   export default {
     name: 'vuestic-data-table',
     components: {
+      SpringSpinner,
       FilterBar,
       Vuetable,
       VuetablePagination,
@@ -70,7 +87,8 @@
       },
       httpOptions: {
         type: Object,
-        default: () => {}
+        default: () => {
+        }
       },
       filterQuery: {
         type: String,
@@ -130,6 +148,9 @@
       paginationPath: {
         type: String,
         default: ''
+      },
+      queryParams: {
+        type: Object
       }
     },
     data () {
@@ -138,7 +159,9 @@
         colorClasses: {},
         filterText: '',
         dataCount: 0,
-        css: DataTableStyles
+        css: DataTableStyles,
+        loading: false,
+        noDataTemplate: ''
       }
     },
     computed: {
@@ -247,15 +270,25 @@
           pagination: pagination,
           data: data.slice(pagination.from - 1, pagination.to)
         }
+      },
+      onLoading () {
+        this.noDataTemplate = ''
+        this.loading = true
+        this.$emit('vuestic:loading')
+      },
+      onLoaded () {
+        this.noDataTemplate = this.$t('tables.dataTable.noDataAvailable')
+        this.loading = false
+        this.$emit('vuestic:loaded')
       }
     }
   }
 </script>
 
 <style lang="scss">
-  @import "../../../sass/variables";
-
   .vuestic-data-table {
+    min-height: 24rem;
+
     .form-group {
       margin-bottom: 1rem;
     }
@@ -281,5 +314,19 @@
         display: none;
       }
     }
+
+    .data-table-loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+    }
+  }
+
+  .data-loading {
+    opacity: .5;
+    pointer-events: none;
   }
 </style>

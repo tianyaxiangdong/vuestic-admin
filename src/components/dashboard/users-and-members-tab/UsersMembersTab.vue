@@ -2,7 +2,7 @@
   <div class="users-members-tab dashboard-tab">
     <div class="row">
       <div class="col-md-3 d-flex justify-content-center align-items-center">
-        <vuestic-profile-card :name="'Veronique Lee'" :location="'Malaga, Spain'" photoSource="http://i.imgur.com/NLrdqsk.png"
+        <vuestic-profile-card :name="'Veronique Lee'" :location="'Malaga, Spain'" photoSource="https://i.imgur.com/NLrdqsk.png"
                               :social="{twitter: 'twitter.com', facebook: 'facebook.com',
                                   instagram: 'instagram.com'}">
         </vuestic-profile-card>
@@ -52,12 +52,6 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../../sass/_variables.scss";
-  @import "~bootstrap/scss/functions";
-  @import "~bootstrap/scss/variables";
-  @import "~bootstrap/scss/mixins/breakpoints";
-
-
   .vuestic-profile-card {
     margin-left: 1rem;
 
