@@ -21,7 +21,8 @@
     props: {
       fixed: {
         type: Boolean,
-        default: false,
+        // use position： fixed
+        default: true
       },
     },
     directives: {
@@ -39,19 +40,6 @@
 
 <style lang="scss">
   .layout {
-    &-fixed {
-      .content-wrap {
-        padding-right: $layout-padding-right;
-        padding-top: $sidebar-top;
-
-        @include media-breakpoint-down(md) {
-          padding: $content-mobile-wrap-fixed-layout;
-          margin-left: 0;
-
-        }
-      }
-    }
-
     .content-wrap {
       margin-left: $content-wrap-ml;
       transition: margin-left 0.3s ease;
@@ -72,6 +60,21 @@
         }
       }
     }
+
+    &-fixed {
+      .content-wrap {
+        padding-right: $layout-padding-right;
+        padding-top: 0;
+        margin-top: $sidebar-top;
+
+        @include media-breakpoint-down(md) {
+          padding: $content-mobile-wrap-fixed-layout;
+          margin-left: 0;
+
+        }
+      }
+    }
+
     .made-by-footer {
       display: flex;
       justify-content: center;

@@ -1,4 +1,4 @@
-import {Line, mixins} from 'vue-chartjs'
+import { Line, mixins } from 'vue-chartjs'
 import DefaultOptions from '../DefaultOptions'
 
 export default Line.extend({

@@ -34,7 +34,7 @@
     }
 
     height: $sidebar-viewport-height;
-    position: absolute;
+    position: fixed;
     width: $sidebar-width;
     top: $sidebar-top;
     left: $sidebar-left;

@@ -25,7 +25,7 @@
   export default {
     name: 'vuestic-chat',
 
-    directives: {StickyScroll},
+    directives: { StickyScroll },
 
     props: {
       value: {

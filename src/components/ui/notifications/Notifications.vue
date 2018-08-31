@@ -136,7 +136,7 @@
   export default {
     name: 'notifications',
 
-    components: {ToastPositionPicker},
+    components: { ToastPositionPicker },
 
     data () {
       return {

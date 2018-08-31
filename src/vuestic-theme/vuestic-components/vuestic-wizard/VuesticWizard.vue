@@ -66,7 +66,7 @@
         type: String,
         default: 'horizontal'
       },
-      lastStepLabel: {default: 'Confirm'},
+      lastStepLabel: { default: 'Confirm' },
       onNext: {},
       onBack: {}
     },

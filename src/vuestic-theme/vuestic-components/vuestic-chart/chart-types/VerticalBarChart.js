@@ -1,4 +1,4 @@
-import {Bar, mixins} from 'vue-chartjs'
+import { Bar, mixins } from 'vue-chartjs'
 import DefaultOptions from '../DefaultOptions'
 
 export default Bar.extend({
